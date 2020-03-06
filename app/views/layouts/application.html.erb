@@ -18,7 +18,7 @@
       <ul>
         <li class="category"><%= link_to "Blog Bucket", root_path %></li>
         <li><%=link_to "Posts", root_path %></li>
-        <li>About</li>
+        <li><%= link_to "About", about_path %></li>
       </ul>
 
       <p class="sign_in">Login</p>
@@ -26,7 +26,14 @@
 
     <div id="main_content">
       <div id="header">
-        <p>Your Post Feed</p>
+        <% if current_page?(root_path) %>
+          <p>Your Post Feed</p>
+        <% elsif current_page?(about_path) %>
+          <p>A little bit about myself</p>
+        <%else %>
+          <%= link_to "Go Back to Post Feed", root_path %>
+        <% end %>
+
         <div class="buttons">
           <button class="button"><%= link_to "Create a new Post", new_post_path %></button>
           <button class="button">Log Out</button>
